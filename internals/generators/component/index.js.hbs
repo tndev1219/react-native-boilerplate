@@ -1,0 +1,41 @@
+/**
+ *
+ * {{ properCase name }}
+ *
+ */
+
+{{#if memo}}
+import React, { memo } from 'react';
+{{else}}
+import React from 'react';
+{{/if}}
+
+{{#if wantMessages}}
+import { View, Text } from 'react-native';
+{{else}}
+import { View } from 'react-native';
+{{/if}}
+// import PropTypes from 'prop-types';
+
+{{#if wantMessages}}
+import { injectIntl, intlShape } from 'react-intl';
+import messages from './messages';
+{{/if}}
+
+function {{ properCase name }}(props) {
+  return (
+    <View>
+    {{#if wantMessages}}
+      <Text>{props.intl.formatMessage(messages.header)}</Text>
+    {{/if}}
+    </View>
+  );
+}
+
+{{ properCase name }}.propTypes = {
+  {{#if wantMessages}}
+  intl: intlShape,
+  {{/if}}
+};
+
+export default {{#if memo}}memo{{/if}}({{#if wantMessages}}injectIntl{{/if}}({{ properCase name }}));
